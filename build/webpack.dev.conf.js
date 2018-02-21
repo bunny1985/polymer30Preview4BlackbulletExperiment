@@ -11,7 +11,7 @@ module.exports = {
     // 'webcomponents-loader': ['@webcomponents/webcomponentsjs/webcomponents-loader'],
     // vendor: ['./src/vendor'],
     app: [
-        'webpack-dev-server/client?http://localhost:8080', // live reload
+        'webpack-dev-server/client?http://localhost:8081', // live reload
         './src/index'
     ]
   },
@@ -34,11 +34,9 @@ module.exports = {
       },
       {
         test: /\.(css)$/,
-        use: [
-          { loader: "raw-loader" },
-          
-        ]
+        use: 'raw-loader'
       },
+      
       {
         test: /\.ts?$/,
         use: 'ts-loader',

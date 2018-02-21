@@ -16,7 +16,7 @@ const websocketUrl = "wss://blackbulletapp.ovh/notificationsSocket";
 
 export class Api {
 
-    socket: WebSocketSubject<{}>;
+    socket: WebSocketSubject<any>;
 
     default_post_headers = {
         'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ export class Api {
           }
         return this.post(urls.register , registerData);
     }
-    private connect(){
+     connect(){
         console.log("connect");
         let subject = Observable.webSocket(websocketUrl);
         subject
@@ -89,7 +89,7 @@ export class Api {
             this.connect()
         }  );
     }
-    GetSocket(): WebSocketSubject<{}>{
+    GetSocket(): WebSocketSubject<any>{
         return this.socket
     }
 

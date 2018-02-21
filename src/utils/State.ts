@@ -3,6 +3,11 @@ import { EventNames } from "./EventNames";
 import { Map } from "immutable"
 import { inject } from "./index";
 import { EventsDispatcher } from "./EventsDispatcher";
+import { StateRouter } from "./StateRouter"
+
+
+
+
 
 
 
@@ -23,6 +28,7 @@ export  class ApplicationState{
     private  state_changed(newState ){
         this.stateChanges.next({newState: newState ,oldState: this.currentState })
         this.currentState = newState;
+        
     }
 
     
@@ -32,7 +38,9 @@ export  class ApplicationState{
     constructor(){
         inject.inject(this , ["EventsDispatcher"])
         this._EventsDispatcher.addListener(EventNames.SockedConnected , ( data ) => {this.loggedIn()})
-     
+
+
+        
     }
 
 

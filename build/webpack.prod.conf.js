@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 // const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const webpack = require('webpack');
 
@@ -39,18 +40,18 @@ module.exports = {
       /environments\/environment\.ts/,
       'environment.prod.ts'
     ),
-    // new CommonsChunkPlugin({
-    //   // The order of this array matters
-    //   names: ['vendor'],
-    //   minChunks: Infinity
-    // }),
+    new CommonsChunkPlugin({
+      // The order of this array matters
+      names: ['vendor'],
+      minChunks: Infinity
+    }),
     // not able to uglify, probably related to: https://github.com/Polymer/polymer-cli/issues/388
-    // new webpack.optimize.UglifyJsPlugin({
-    //   compress: {
-    //     warnings: false
-    //   },
-    //   sourceMap: true
-    // }),
+    //  new webpack.optimize.UglifyJsPlugin({
+    //    compress: {
+    //      warnings: false
+    //    },
+    //    sourceMap: false
+    //  }),
     new HtmlWebpackPlugin({
       template: './index.html'
     }),

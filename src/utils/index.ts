@@ -5,7 +5,7 @@ import {NotificationFactory} from  "./Notifications";
 import {EventsDispatcher} from "./EventsDispatcher"
 import { Api} from './Api';
 import { ApplicationState } from './State';
-
+import { StateRouter } from './StateRouter';
 
 
 
@@ -37,6 +37,7 @@ injector.register("Api", new Api());
 injector.register("NotificationFactory" , new NotificationFactory)
 injector.register("EventsDispatcher" , new EventsDispatcher());
 injector.register("ApplicationState" , new ApplicationState());
+injector.register("StateRouter" , StateRouter);
 
 
 

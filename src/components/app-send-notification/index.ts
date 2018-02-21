@@ -6,7 +6,7 @@ import '@polymer/paper-input/paper-input';
 import '@polymer/paper-button/paper-button';
 
 
-import * as view from './app.login.html';
+import * as view from './app.send.notification.html';
 
 
 import {inject} from '../../utils/index'
@@ -21,9 +21,7 @@ import { NotificationFactory } from '../../utils/Notifications';
 import { ApplicationState } from '../../utils/State';
 import { ListenableRouter } from '../../utils/StateRouter';
 
-let style  = require( './app-login.css');
-console.log(style);
-export class AppLogin extends GestureEventListeners(PolymerElement) {
+export class AppSendNotification extends GestureEventListeners(PolymerElement) {
 
     _Api: Api
     _NotificationFactory: NotificationFactory
@@ -34,29 +32,22 @@ export class AppLogin extends GestureEventListeners(PolymerElement) {
     // Define a string template instead of a `<template>` element.
     //_template  = html('<h1>DUPA</h1');
      static get template() {
-         return  html`<style>${style}</style>${view}<h1>DUUUUPA</h1>`;
-         //return view;
+         return  view;
      }
     constructor() {
         super();
         inject.inject(this , ["Api", "NotificationFactory", "ApplicationState" , "StateRouter"]) 
-    }
-    static get properties() {
-        return {
-
-        };
-    }
-    public on_login_clicked(){
-    
         
-        this._Api.login(this.view.$.login.value , this.view.$.password.value  , true).then( () => {
-            this._NotificationFactory.CreateNotification("Logged in!" , "you are now logged in");
-            this._StateRouter.navigate("main");
-        })
     }
 
-    ready() {
-        super.ready();
-        this.view = this as any;
+    public on_clicked(){
+        console.log("COMPONENT:" , this)
+        this.view = (this as any).$;
+        let text = this.view.text.value;
+        let json = "{'type': 'notification' , 'text': '" + text+ "' }";
+        
+        this._Api.GetSocket().next(json);
     }
+
+
 }
