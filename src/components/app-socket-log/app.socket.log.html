@@ -1,6 +1,39 @@
-<h1>
-    HELLO 
-</h1>
-<template is="dom-repeat" items="{{messages}}">
-    <h2>AAA</h2>
-</template> 
+<style>
+    .main{
+        margin-left: 2em;
+        margin-right: 2em;
+        margin-bottom: 20px;
+        
+        
+    }
+    .item{
+        --paper-item: {
+            border: 1px solid #ddd;
+            
+            
+        }
+    }
+    .itemBody{
+        --paper-item-body-secondary:{
+            .right{
+                float: right;
+            }
+        }
+    }
+    
+</style>
+
+  <div role="listbox" class="main">
+        <template is="dom-repeat" items="{{messages}}">
+                <paper-item class="item">
+                    
+                    <paper-item-body three-line class="itemBody">
+                    <div>[[item.title]]</div>
+                    <div secondary>[[item.body]]</div>
+                    <div class="right" secondary>20:20</div>
+                  </paper-item-body>
+                </paper-item>
+        </template> 
+    
+    
+  </div>

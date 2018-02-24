@@ -1,11 +1,10 @@
-
-import { GestureEventListeners } from '@polymer/polymer/lib/mixins/gesture-event-listeners';
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
-
+import "@polymer/polymer/lib/elements/dom-repeat.js"
+import { Api, container } from '../../utils';
 import { customElement, property } from '../../utils/Decorators';
 import * as view from './app.socket.log.html';
-import { container, Api } from '../../utils/index';
-import { window } from 'rxjs/operators/window';
+import "@polymer/paper-item/paper-item";
+import "@polymer/paper-item/paper-item-body";
 
 
 
@@ -14,21 +13,25 @@ import { window } from 'rxjs/operators/window';
 export class AppSocketLog extends PolymerElement {
     _Api: Api;
     
+    @property({type: Array})
     messages : Array<any>;
 
     constructor() {
         super();
         
     }
+    
+    
     public ready() {
+        super.ready();
+        console.log("READY");
         this.messages = [];
-        setInterval(() => {
-            this.messages.push(1);
-        } , 1000)
-        //let socket = this._Api.GetSocket().subscribe((message) => {
-          //  this.messages.push(message)
+        this._Api = container.get(Api);
+        
+        let socket = this._Api.GetSocket().subscribe((message) => {
+            (this as any).push("messages" , message)
             
-        //})
+        })
     }
 
 }

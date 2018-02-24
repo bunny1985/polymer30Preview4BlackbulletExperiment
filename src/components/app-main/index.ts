@@ -14,7 +14,7 @@ import * as view from './app.main.html';
 @customElement("app-main" , {view: view})
 export class AppMain extends Element {
 
-    @property({type: Number})
+    //@property({type: Number})
     selected:number = 0;
     @query("#tabs")
     tabs : HTMLElement;
@@ -27,12 +27,17 @@ export class AppMain extends Element {
         this._Api = container.get(Api);
         
     }
+    static get properties() {
+        return {
+            selected: {type: Number}
+        }
+    }
 
     
     ready() {
         super.ready();
         this._Api.connect();
-        (this.tabs as any ).select(0)
+        //(this.tabs as any ).select(0)
     }
     
 }

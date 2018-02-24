@@ -1,4 +1,19 @@
+<style>
 
+.tabs {
+             --paper-tabs-selection-bar: {
+                 
+                 background-color: rgba(255, 255, 255, 0,5);
+                 
+             };
+             --paper-tabs-container: {
+               margin: 0px;
+             };
+             --paper-tabs: {
+               background-color: #62497a;
+               color: white;
+             }
+}
  
 </style>
 
@@ -10,7 +25,7 @@
 <p>
   DONT CLOSE THIS WINDOW
 </p>
-<paper-tabs selected="{{selected}}" scrollable id="tabs">
+<paper-tabs selected="{{selected}}" scrollable id="tabs" class="tabs">
     <paper-tab>LOG</paper-tab>
     <paper-tab>Send SMS from your mobile</paper-tab>
     <paper-tab>Send notification to phone</paper-tab>
@@ -20,7 +35,6 @@
 
 <iron-pages selected="{{selected}}">
   <div>
-    AAA
      <app-socket-log></app-socket-log>
   </div>
   <div>

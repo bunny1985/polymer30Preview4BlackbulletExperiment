@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MinifyPlugin = require("babel-minify-webpack-plugin");
 // const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 // const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const webpack = require('webpack');
@@ -25,6 +26,10 @@ module.exports = {
         }
       },
       {
+        test: /\.css$/,
+        use: 'raw-loader'
+      },
+      {
         test: /\.ts?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
@@ -45,6 +50,7 @@ module.exports = {
       names: ['vendor'],
       minChunks: Infinity
     }),
+    new MinifyPlugin(),
     // not able to uglify, probably related to: https://github.com/Polymer/polymer-cli/issues/388
     //  new webpack.optimize.UglifyJsPlugin({
     //    compress: {
