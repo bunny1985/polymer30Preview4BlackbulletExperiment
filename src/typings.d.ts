@@ -19,3 +19,9 @@ declare module PolyTest {
     }
 }
 
+declare function require(string: string): string;
+
+declare module '*.css' {
+    const content: string;
+    export default content;
+  }

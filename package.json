@@ -10,15 +10,18 @@
     "deploy": "firebase deploy"
   },
   "dependencies": {
+    "@polymer/iron-pages": "https://github.com/PolymerElements/iron-pages.git#3.0-preview",
     "@polymer/paper-button": "https://github.com/PolymerElements/paper-button.git#3.0-preview",
     "@polymer/paper-input": "https://github.com/PolymerElements/paper-input.git#3.0-preview",
+    "@polymer/paper-tabs": "https://github.com/PolymerElements/paper-tabs.git#3.0-preview",
     "@polymer/polymer": "^3.0.0-pre.4",
     "@webcomponents/webcomponentsjs": "^1.1.0",
     "css-loader": "^0.28.9",
     "immutable": "^3.8.2",
+    "inversify": "^4.10.0",
     "lodash": "^4.17.4",
     "raw-loader": "^0.5.1",
-    "reflect-metadata": "^0.1.10",
+    "reflect-metadata": "^0.1.12",
     "router5": "^5.8.2",
     "rxjs": "^5.5.6",
     "style-loader": "^0.20.2"
@@ -121,7 +124,10 @@
     "has-values": "1.0.0",
     "depd": "1.1.2",
     "setprototypeof": "1.1.0",
-    "statuses": "1.4.0"
+    "statuses": "1.4.0",
+    "@polymer/paper-behaviors": "3.0.0-pre.10",
+    "@polymer/iron-checked-element-behavior": "3.0.0-pre.10",
+    "@polymer/paper-ripple": "3.0.0-pre.10"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.16",

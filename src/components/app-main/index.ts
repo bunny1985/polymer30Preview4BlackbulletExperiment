@@ -1,37 +1,38 @@
-
-import { Element  } from '@polymer/polymer/polymer-element';
+import '@polymer/paper-tabs/paper-tabs';
+import '@polymer/iron-pages/iron-pages';
 import '@polymer/polymer/lib/elements/dom-if';
-import * as view from './app.main.html';
-import { inject} from '../../utils/index';
-import { Api} from '../../utils/Api';
-import { EventsDispatcher } from '../../utils/EventsDispatcher';
-import { EventNames } from '../../utils/EventNames';
-import { StateRouter, ListenableRouter } from '../../utils/StateRouter';
-import { NotificationFactory } from '../../utils/Notifications';
-import { ApplicationState } from '../../utils/State';
 
+import { Element } from '@polymer/polymer/polymer-element';
+
+import { container } from '../../utils';
+import { Api } from '../../utils/Api';
+import { customElement, property, query } from '../../utils/Decorators';
+import * as view from './app.main.html';
+
+
+
+@customElement("app-main" , {view: view})
 export class AppMain extends Element {
 
+    @property({type: Number})
+    selected:number = 0;
+    @query("#tabs")
+    tabs : HTMLElement;
     
-    _Api: Api
-    _NotificationFactory: NotificationFactory
-    _ApplicationState: ApplicationState;
-    view: any;
     
-    // Define a string template instead of a `<template>` element.
-    //_template  = html('<h1>DUPA</h1');
-     static get template() {
-         return  view;
-     }
-    constructor() {
+    
+    private _Api: Api
+    constructor( ) {
         super();
-        inject.inject(this , ["Api", "NotificationFactory", "ApplicationState"]) 
+        this._Api = container.get(Api);
+        
     }
+
+    
     ready() {
         super.ready();
-        this.view = this as any;
         this._Api.connect();
-
+        (this.tabs as any ).select(0)
     }
     
 }

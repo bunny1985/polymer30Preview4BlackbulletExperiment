@@ -1,3 +1,4 @@
+import { injectable} from "inversify";
 var _Notification :any = false
 if("Notification" in window){
      _Notification = window["Notification"];
@@ -16,6 +17,8 @@ document.addEventListener('DOMContentLoaded', function () {
       
     }
 );
+
+@injectable()
 export class NotificationFactory{
     CreateNotification(title , body){
         var audio = new Audio('/static/sounds/ping.ogg');

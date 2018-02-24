@@ -1,28 +1,37 @@
 
-<style>
-    :host{
-      font-family: Arial, Helvetica, sans-serif;
-  }
-.container{
-  width: 950px;
-  margin-right: auto;
-  margin-left: auto;
-  border: 1px solid #ddd;
-  padding: 2em;
-  border-radius: 10px;
-  box-shadow: 0px 0px 20px #000;
-
-}
-    
-    
  
 </style>
 
 <div class="container" >
 <center>
-    <h1>MAIN </h1>
+    <p>xYou are now nonnected to your device andyou will be notified on any incomming notification</p>
+
 </center>
+<p>
+  DONT CLOSE THIS WINDOW
+</p>
+<paper-tabs selected="{{selected}}" scrollable id="tabs">
+    <paper-tab>LOG</paper-tab>
+    <paper-tab>Send SMS from your mobile</paper-tab>
+    <paper-tab>Send notification to phone</paper-tab>
+    <paper-tab>play ringtone</paper-tab>
+    <paper-tab>Battery Status</paper-tab>
+  </paper-tabs>
+
+<iron-pages selected="{{selected}}">
+  <div>
+    AAA
+     <app-socket-log></app-socket-log>
+  </div>
+  <div>
+    <app-send-sms></app-send-sms>
+  </div>
 <app-send-notification></app-send-notification>
-<app-send-sms></app-send-sms>
+<div>WORK IN PROGRESS</div>
+<div>WORK IN PROGRESS</div>
+</iron-pages>
+
+
+
   
 </div>

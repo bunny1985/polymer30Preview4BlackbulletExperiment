@@ -1,30 +1,12 @@
-import * as kebabCase from 'lodash/fp/kebabCase';
-import { MyApp } from './app';
-import { MyTopBar } from './top-bar';
-import { AppLogin } from './app-login/index';
-import { AppNav } from './app-nav/index';
-import { AppHome } from './app-home/index';
-import { AppMain } from './app-main/index';
-import {AppSendNotification} from './app-send-notification/index'
-import {AppSendSms} from './app-send-sms/index'
 
-// add custom elements here
-const elements = {
-    MyApp,
-    MyTopBar,
-    AppLogin,
-    AppNav,
-    AppHome,
-    AppMain,
-    AppSendNotification,
-    AppSendSms
-};
+import './app';
+import './top-bar';
+import './app-login/index';
+import './app-nav/index';
+import './app-home/index';
+import './app-main/index';
+import './app-send-notification/index'
+import './app-send-sms/index'
+import './app-socket-log/app.socket.log'
 
-// register all components as kebab case
-Object.keys(elements)
-    .forEach(key => {
-        
-        customElements.define(kebabCase(key), elements[key])
-        
-    });
 

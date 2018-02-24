@@ -1,10 +1,10 @@
 import {Subject} from "rxjs";
 import { EventNames } from "./EventNames";
 import { Map } from "immutable"
-import { inject } from "./index";
+
 import { EventsDispatcher } from "./EventsDispatcher";
 import { StateRouter } from "./StateRouter"
-
+import { injectable} from "inversify";
 
 
 
@@ -20,23 +20,24 @@ interface StatusChanging{
     newState: State;
 }
 
-
+@injectable()
 export  class ApplicationState{
     stateChanges = new Subject<StatusChanging>();
     currentState = new State();
-    _EventsDispatcher: EventsDispatcher;
+    
     private  state_changed(newState ){
         this.stateChanges.next({newState: newState ,oldState: this.currentState })
         this.currentState = newState;
         
     }
+    
 
     
     GetStateSubject(){    
         return this.stateChanges;
     }
-    constructor(){
-        inject.inject(this , ["EventsDispatcher"])
+    constructor(private _EventsDispatcher: EventsDispatcher){
+    //    inject.inject(this , ["EventsDispatcher"])
         this._EventsDispatcher.addListener(EventNames.SockedConnected , ( data ) => {this.loggedIn()})
 
 

@@ -1,5 +1,6 @@
 // FROM https://medium.com/@LeoAref/simple-event-dispatcher-implementation-using-javascript-36d0eadf5a11
-
+import { injectable, inject } from "inversify";
+@injectable()
 export class EventsDispatcher {
     private events;
     constructor () {

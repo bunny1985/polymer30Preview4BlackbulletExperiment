@@ -3,8 +3,9 @@ import  { Router } from 'router5/create-router';
 import browserPlugin from 'router5/plugins/browser';
 import listenersPlugin from 'router5/plugins/listeners';
 
+
 const routes = [
-    { name: 'home', path: '/home' },
+    { name: 'home', path: '/home' , component: "my-app"},
     { name: 'login', path: '/login' },
     { name: 'register', path: '/register' },
     { name: 'main', path: '/main' }

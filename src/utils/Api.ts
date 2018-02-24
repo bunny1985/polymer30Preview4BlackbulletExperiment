@@ -1,10 +1,10 @@
 import { Observable } from "rxjs";
 import { WebSocketSubject } from "rxjs/observable/dom/WebSocketSubject";
 import { ObservableInput } from "rxjs/Observable";
-import {inject} from "./index"
+
 import { EventsDispatcher } from "./EventsDispatcher";
 import { EventNames } from "./EventNames";
-
+import { injectable, inject } from "inversify";
 var urls = {
     login: "/api/Account/Login" , 
     register: "/api/Account/Register"
@@ -13,7 +13,7 @@ const apiUrl = "https://blackbulletapp.ovh";
 const websocketUrl = "wss://blackbulletapp.ovh/notificationsSocket";
 
 
-
+@injectable()
 export class Api {
 
     socket: WebSocketSubject<any>;
@@ -69,10 +69,7 @@ export class Api {
              () => console.log('complete')
            );
         subject.next(JSON.stringify({ op: 'hello' }));
-        let e = inject.resolve("EventsDispatcher") as EventsDispatcher;
-        
         this.socket = subject;
-        e.dispatch(EventNames.SockedConnected , {});
 
     }
     

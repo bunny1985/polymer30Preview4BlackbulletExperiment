@@ -9,7 +9,7 @@ import '@polymer/paper-button/paper-button';
 import * as view from './app.send.notification.html';
 
 
-import {inject} from '../../utils/index'
+
 import { Api} from '../../utils/Api';
 
 
@@ -20,23 +20,22 @@ import { Observable } from 'rxjs';
 import { NotificationFactory } from '../../utils/Notifications';
 import { ApplicationState } from '../../utils/State';
 import { ListenableRouter } from '../../utils/StateRouter';
+import { injectable } from 'inversify';
+import { customElement } from '../../utils/Decorators';
 
+
+@customElement("app-send-notification" , {view: view})
 export class AppSendNotification extends GestureEventListeners(PolymerElement) {
 
-    _Api: Api
-    _NotificationFactory: NotificationFactory
-    _ApplicationState: ApplicationState;
-    _StateRouter: ListenableRouter;
+    
     view: any;
     
-    // Define a string template instead of a `<template>` element.
-    //_template  = html('<h1>DUPA</h1');
-     static get template() {
-         return  view;
-     }
-    constructor() {
+    constructor( private _Api: Api , 
+        private _NotificationFactory: NotificationFactory, 
+        private _ApplicationState: ApplicationState ,
+        private _StateRouter: ListenableRouter) {
         super();
-        inject.inject(this , ["Api", "NotificationFactory", "ApplicationState" , "StateRouter"]) 
+        //inject.inject(this , ["Api", "NotificationFactory", "ApplicationState" , "StateRouter"]) 
         
     }
 

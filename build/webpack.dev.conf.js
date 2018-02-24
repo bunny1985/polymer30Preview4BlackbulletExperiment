@@ -33,7 +33,7 @@ module.exports = {
         }
       },
       {
-        test: /\.(css)$/,
+        test: /\.css$/,
         use: 'raw-loader'
       },
       
@@ -45,6 +45,7 @@ module.exports = {
     ]
   },
   resolve: {
+    modules: [path.resolve(__dirname, "src"), "node_modules"],
     extensions: ['.ts', '.js']
   },
   plugins: [

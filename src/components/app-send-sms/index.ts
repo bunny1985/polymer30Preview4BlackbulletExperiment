@@ -1,32 +1,28 @@
-import { html } from '@polymer/polymer/polymer.js'
-import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
-import { GestureEventListeners } from '@polymer/polymer/lib/mixins/gesture-event-listeners';
-import '@polymer/polymer/lib/elements/dom-if';
-import '@polymer/paper-input/paper-input';
 import '@polymer/paper-button/paper-button';
+import '@polymer/paper-input/paper-input';
+import '@polymer/polymer/lib/elements/dom-if';
 
+import { GestureEventListeners } from '@polymer/polymer/lib/mixins/gesture-event-listeners';
+import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
 
-import * as view from './app.send.sms.html';
-
-
-import {inject} from '../../utils/index'
-import { Api} from '../../utils/Api';
-
-
-
-
-import { StartOfSourceMap } from 'uglify-js/node_modules/source-map/source-map';
-import { Observable } from 'rxjs';
+import { Api } from '../../utils/Api';
+import { customElement } from '../../utils/Decorators';
 import { NotificationFactory } from '../../utils/Notifications';
 import { ApplicationState } from '../../utils/State';
 import { ListenableRouter } from '../../utils/StateRouter';
+import * as view from './app.send.sms.html';
 
+
+
+
+
+
+
+
+@customElement("app-send-sms" , {view: view})
 export class AppSendSms extends GestureEventListeners(PolymerElement) {
 
-    _Api: Api
-    _NotificationFactory: NotificationFactory
-    _ApplicationState: ApplicationState;
-    _StateRouter: ListenableRouter;
+    
     view: any;
     
     // Define a string template instead of a `<template>` element.
@@ -34,9 +30,13 @@ export class AppSendSms extends GestureEventListeners(PolymerElement) {
      static get template() {
          return  view;
      }
-    constructor() {
+    constructor(private _Api: Api , 
+        private _NotificationFactory: NotificationFactory ,
+        private _ApplicationState: ApplicationState , 
+        private _StateRouter: ListenableRouter
+    ) {
         super();
-        inject.inject(this , ["Api", "NotificationFactory", "ApplicationState" , "StateRouter"]) 
+        //inject.inject(this , ["Api", "NotificationFactory", "ApplicationState" , "StateRouter"]) 
         
     }
 

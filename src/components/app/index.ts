@@ -2,23 +2,33 @@ import * as shuffle from 'lodash/fp/shuffle';
 import { Element  } from '@polymer/polymer/polymer-element';
 import '@polymer/polymer/lib/elements/dom-if';
 import * as view from './app.template.html';
-import { inject} from '../../utils/index';
+
 import { Api} from '../../utils/Api';
 import { EventsDispatcher } from '../../utils/EventsDispatcher';
 import { EventNames } from '../../utils/EventNames';
 import { StateRouter, ListenableRouter } from '../../utils/StateRouter';
 import { NotificationFactory } from '../../utils/Notifications';
 
+
+
+import {container , bind}  from "../../utils"
+import { customElement  } from '../../utils/Decorators';
+import * as baseStyle from '../../css/base.css'
+
+@customElement("my-app" , {
+    view: view, 
+    css: baseStyle
+})
 export class MyApp extends Element {
 
-    _Api: Api;
-    _EventsDispatcher: EventsDispatcher;
-    _StateRouter: ListenableRouter;
-    _NotificationFactory: NotificationFactory;
+
+    private _Api: Api;
+    private  _EventsDispatcher: EventsDispatcher;
+    private _StateRouter: ListenableRouter;
+    private _NotificationFactory: NotificationFactory;
+
     // Define a string template instead of a `<template>` element.
-    static get template() {
-        return view;
-    }
+    
     constructor() {
         super();
     }
@@ -62,9 +72,13 @@ export class MyApp extends Element {
 
     
     ready() {
-        
         super.ready();
-        inject.inject(this  , ["Api" , "EventsDispatcher" , "StateRouter" , "NotificationFactory"]);
+        
+        this._Api = container.get<Api>(Api);
+        this._EventsDispatcher = container.get<EventsDispatcher>(EventsDispatcher);
+        this._StateRouter = container.get("StateRouter");
+        this._NotificationFactory = container.get(NotificationFactory);
+        
         this._EventsDispatcher.addListener(EventNames.SockedConnected , () =>this.register_socket_observer());
         this._StateRouter.addListener((a , b) => this.changeView(a , b));
         this._StateRouter.start("home");
