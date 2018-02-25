@@ -36,6 +36,10 @@ module.exports = {
         test: /\.css$/,
         use: 'raw-loader'
       },
+      {
+        test: /\.js$/,
+        use: 'babel-loader'
+      },
       
       {
         test: /\.ts?$/,
@@ -55,9 +59,9 @@ module.exports = {
     //   names: ['vendor'],
     //   minChunks: Infinity
     // }),
-    new HtmlWebpackPlugin({
-      template: './index.html'
-    }),
+    //new HtmlWebpackPlugin({
+    //  template: './index.html'
+    //}),
     // copy custom static assets
     new CopyWebpackPlugin([
       {

@@ -19,7 +19,7 @@ import { Api } from '../../utils/Api';
 import { StartOfSourceMap } from 'uglify-js/node_modules/source-map/source-map';
 import { Observable } from 'rxjs';
 
-import { container, bind, ListenableRouter, NotificationFactory } from '../../utils';
+import { container, bind, ListenableRouter, NotificationFactory, StateRouter } from '../../utils';
 import { customElement } from '../../utils/Decorators';
 
 
@@ -39,6 +39,7 @@ export class AppLogin extends GestureEventListeners(PolymerElement) {
         super();
         this._Api = container.get(Api);
         this._NotificationFactory = container.get(NotificationFactory);
+        this._StateRouter = container.get("StateRouter");
         
     }
     static get properties() {

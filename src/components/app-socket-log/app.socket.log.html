@@ -3,8 +3,15 @@
         margin-left: 2em;
         margin-right: 2em;
         margin-bottom: 20px;
+
         
-        
+    }
+    .battery{
+        margin-left: 2em;
+        margin-right: 2em;
+        background-color: #ccc;
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
     }
     .item{
         --paper-item: {
@@ -22,7 +29,9 @@
     }
     
 </style>
-
+<div class="battery">
+    Battery: [[battery]]
+</div>
   <div role="listbox" class="main">
         <template is="dom-repeat" items="{{messages}}">
                 <paper-item class="item">
@@ -30,7 +39,7 @@
                     <paper-item-body three-line class="itemBody">
                     <div>[[item.title]]</div>
                     <div secondary>[[item.body]]</div>
-                    <div class="right" secondary>20:20</div>
+                    <div class="right" secondary>[[item.time]]</div>
                   </paper-item-body>
                 </paper-item>
         </template> 

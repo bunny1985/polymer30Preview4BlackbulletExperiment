@@ -8,5 +8,6 @@ import './app-main/index';
 import './app-send-notification/index'
 import './app-send-sms/index'
 import './app-socket-log/app.socket.log'
+import './app-ringtone/index'
 
 

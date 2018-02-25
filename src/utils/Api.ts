@@ -5,13 +5,16 @@ import { ObservableInput } from "rxjs/Observable";
 import { EventsDispatcher } from "./EventsDispatcher";
 import { EventNames } from "./EventNames";
 import { injectable, inject } from "inversify";
+import { container } from "./index";
+import { ApplicationState } from "./State";
 var urls = {
     login: "/api/Account/Login" , 
     register: "/api/Account/Register"
 }
 const apiUrl = "https://blackbulletapp.ovh";
 const websocketUrl = "wss://blackbulletapp.ovh/notificationsSocket";
-
+// const apiUrl = "http://localhost:8080";
+// const websocketUrl = "ws://localhost:8080/notificationsSocket";
 
 @injectable()
 export class Api {
@@ -64,12 +67,13 @@ export class Api {
         subject
           .retry()
           .subscribe(
-             (msg) => console.log('message received: ' + msg),
+             (msg) => console.log('message received: ' ,  msg),
              (err) => alert(err),
              () => console.log('complete')
            );
         subject.next(JSON.stringify({ op: 'hello' }));
         this.socket = subject;
+        container.get(ApplicationState).connected();
 
     }
     
@@ -87,6 +91,7 @@ export class Api {
         }  );
     }
     GetSocket(): WebSocketSubject<any>{
+        
         return this.socket
     }
 

@@ -10,7 +10,7 @@ import { customElement } from '../../utils/Decorators';
 import { NotificationFactory } from '../../utils/Notifications';
 import { ApplicationState } from '../../utils/State';
 import { ListenableRouter } from '../../utils/StateRouter';
-import * as view from './app.send.sms.html';
+import * as view from './app.play.ringtone.html';
 import { container } from '../../utils/index';
 
 
@@ -20,27 +20,28 @@ import { container } from '../../utils/index';
 
 
 
-@customElement("app-send-sms" , {view: view})
-export class AppSendSms extends GestureEventListeners(PolymerElement) {
+@customElement("app-play-ringtone" , {view: view})
+export class AppPlayRingtone extends GestureEventListeners(PolymerElement) {
 
     
     view: any;
-    
     private _Api: Api
+    // Define a string template instead of a `<template>` element.
+    //_template  = html('<h1>DUPA</h1');
+     static get template() {
+         return  view;
+     }
     constructor() {
         super();
-        this._Api = container.get(Api);
         //inject.inject(this , ["Api", "NotificationFactory", "ApplicationState" , "StateRouter"]) 
         
     }
 
     public on_clicked(){
         console.log("COMPONENT:" , this)
+        this._Api = container.get(Api);
         this.view = (this as any).$;
-        let text = this.view.text.value;
-        let to = this.view.to.value;
-        let json = "{'type': 'sms' , 'text': '" + text+ "', 'to': '" + to+ "' }";
-        
+        let json = '{"type": "ringtone"}';
         this._Api.GetSocket().next(json);
     }
 

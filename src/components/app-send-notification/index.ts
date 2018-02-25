@@ -22,6 +22,7 @@ import { ApplicationState } from '../../utils/State';
 import { ListenableRouter } from '../../utils/StateRouter';
 import { injectable } from 'inversify';
 import { customElement } from '../../utils/Decorators';
+import { container } from '../../utils/index';
 
 
 @customElement("app-send-notification" , {view: view})
@@ -29,18 +30,17 @@ export class AppSendNotification extends GestureEventListeners(PolymerElement) {
 
     
     view: any;
-    
-    constructor( private _Api: Api , 
-        private _NotificationFactory: NotificationFactory, 
-        private _ApplicationState: ApplicationState ,
-        private _StateRouter: ListenableRouter) {
+    private _Api: Api;
+    constructor() {
         super();
         //inject.inject(this , ["Api", "NotificationFactory", "ApplicationState" , "StateRouter"]) 
-        
+        this._Api = container.get(Api);
     }
+    
 
     public on_clicked(){
         console.log("COMPONENT:" , this)
+        
         this.view = (this as any).$;
         let text = this.view.text.value;
         let json = "{'type': 'notification' , 'text': '" + text+ "' }";

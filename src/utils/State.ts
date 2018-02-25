@@ -44,8 +44,13 @@ export  class ApplicationState{
         
     }
 
+    connected(){
+        let newState = Map(this.currentState).asImmutable().toObject();
+        newState.connected = true;
+        this.state_changed(newState)
+    }
 
-    private loggedIn(){
+    loggedIn(){
         let newState = Map(this.currentState).asImmutable().toObject();
         newState.loggedIn = true;
         this.state_changed(newState)

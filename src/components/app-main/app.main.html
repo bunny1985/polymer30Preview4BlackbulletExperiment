@@ -1,5 +1,18 @@
 <style>
-
+.warning{
+  text-align: center;
+  background-color: #783342;
+  margin: 0px;
+  font-size: 24px;
+  color: white;
+}
+.info{
+  text-align: center;
+  background-color: #5C2A6B;
+  margin: 0px;
+  font-size: 24px;
+  color: white;
+}
 .tabs {
              --paper-tabs-selection-bar: {
                  
@@ -18,13 +31,12 @@
 </style>
 
 <div class="container" >
-<center>
-    <p>xYou are now nonnected to your device andyou will be notified on any incomming notification</p>
-
-</center>
-<p>
-  DONT CLOSE THIS WINDOW
-</p>
+<div class="info">
+    You are now nonnected
+</div>
+<div class="warning">
+  DONT CLOSE THIS WINDOW TO RECIVE NOTIFICATIONS
+</div>
 <paper-tabs selected="{{selected}}" scrollable id="tabs" class="tabs">
     <paper-tab>LOG</paper-tab>
     <paper-tab>Send SMS from your mobile</paper-tab>
@@ -41,7 +53,8 @@
     <app-send-sms></app-send-sms>
   </div>
 <app-send-notification></app-send-notification>
-<div>WORK IN PROGRESS</div>
+<app-play-ringtone></app-play-ringtone>
+
 <div>WORK IN PROGRESS</div>
 </iron-pages>
 

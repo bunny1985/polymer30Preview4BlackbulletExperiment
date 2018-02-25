@@ -6,6 +6,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MinifyPlugin = require("babel-minify-webpack-plugin");
 // const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 // const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+loaders = require("./Loaders")
+filesToCopy = require("./Copy")
 const webpack = require('webpack');
 
 module.exports = {
@@ -14,27 +16,11 @@ module.exports = {
     app: './src/index'
   },
   output: {
-    filename: '[name].[chunkhash].js',
+    filename: '[name].js',
     path: path.resolve(__dirname, '..', 'dist')
   },
   module: {
-    rules: [
-      {
-        test: /\.(html)$/,
-        use: {
-          loader: 'html-loader'
-        }
-      },
-      {
-        test: /\.css$/,
-        use: 'raw-loader'
-      },
-      {
-        test: /\.ts?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      }
-    ]
+    rules: loaders
   },
   resolve: {
     extensions: ['.ts', '.js']
@@ -58,20 +44,11 @@ module.exports = {
     //    },
     //    sourceMap: false
     //  }),
-    new HtmlWebpackPlugin({
-      template: './index.html'
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: './index.html'
+    // }),
     // copy custom static assets
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, '../static'),
-        to: 'static',
-        ignore: ['.*']
-      },
-      {
-        from: path.resolve(__dirname, '../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js')
-      }
-    ]),
+    new CopyWebpackPlugin(filesToCopy),
     // get around with stupid warning
     new webpack.IgnorePlugin(/vertx/),
   ]
