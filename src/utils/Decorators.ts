@@ -69,7 +69,7 @@ export function customElement(tagname: string, templateOptions?: TemplateOptions
       }
     }
     // Throws if tag name is missing or invalid.
-    console.log("register_component" , class_);
+    //console.log("register_component" , class_);
     (window as any).c = class_;
     window.customElements.define(class_.is!, class_);
   }

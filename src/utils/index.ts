@@ -30,4 +30,4 @@ export const bind = (objectsToBind: Array<{key, obj}>) => {
 
 export const container = kernel;
 
- 
+(window as any).s = kernel.get(ApplicationState);

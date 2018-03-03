@@ -1,8 +1,25 @@
 <!-- app.template.html -->
+<my-top-bar></my-top-bar>
+
+<div class='hero flex' >
+  <div>
+  <h1>BlackBullet</h1>
+  <span> Android notifications for your desktop</span>
+</div>
+<div class="github">
+  <a  href="https://github.com/bunny1985">
+    <img src="/static/images/mark-github.png">
+  </a>
+  <center>
+    SEE IT ON GITHUB
+  </center>
+</div>
+</div>
+
 <div>
-  <my-top-bar ></my-top-bar>
+
   <style>
-    #outlet{  
+    #outlet {
       background-color: white;
       width: 1048px;
       margin-left: auto;
@@ -10,8 +27,34 @@
       border: 1px solid #aaa;
 
     }
+    .github{
+        margin-top:25px;
+        width: 200px;
+        
+    }
+    .github img{
+      width: 100px;
+      height: 100px;
+      margin-left:50px;
+    }
+    .flex{
+    display: flex;
+    flex-flow: nowrap;
+    justify-content: space-between;
+}
+    .hero {
+
+      height: 150px;
+      border: 0px;
+      background: linear-gradient( #a289ba ,  #62497a );
+      color: #fff;
+      padding-top: 50px;
+      padding-left: 100px;
+      margin-bottom: 10px;
+    }
   </style>
+
   <div id="outlet">
 
   </div>
-
+</div>

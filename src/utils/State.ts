@@ -11,11 +11,11 @@ import { injectable} from "inversify";
 
 
 
-class State{
+export class State{
     loggedIn= false;
     connected=  false;
 }
-interface StatusChanging{
+export interface StatusChanging{
     oldState: State;
     newState: State;
 }

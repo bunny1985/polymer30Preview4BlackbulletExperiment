@@ -7,34 +7,103 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    
+
     <script>
         document.addEventListener("WebComponentsReady", function componentsReady() {
             console.log("WEBCOMPONENTS")
             document.removeEventListener("WebComponentsReady", componentsReady, false);
-        
+
             const script = document.createElement("script");
             script.src = "app.js";
             var refScript = document.getElementsByTagName("script")[0];
             refScript.parentNode.insertBefore(script, refScript);
         }, false);
     </script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
 
 <body>
     <style>
-        body{
+        body {
             background-color: #ddd;
+            margin:0px;
+            padding: 0px;
         }
 
-    </style>
-    <my-app >
-        <center>
-            <h2> Loading</h2>
-        </center>
+        main div {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            border-top: 20px solid;
+            border-radius: 50%;
+        }
 
+        main {
+            position: relative;
+            left: calc(50% - 125px);
+            top: calc(50vh - 75px);
+        }
+
+        .first {
+            transform: skew(-10deg) translateX(50px) rotate(45deg);
+            animation: rot1 2s ease infinite;
+            border-color: #62497a;
+        }
+
+        .second {
+            transform: skew(-10deg) rotate(165deg);
+            animation: rot2 2s ease infinite;
+            border-color: #42295a;
+        }
+
+        .third {
+            transform: skew(-10deg) translateX(20px) translateY(-50px) rotate(285deg);
+            animation: rot3 2s ease infinite;
+            border-color: #a289ba;
+        }
+
+        @keyframes rot1 {
+            100% {
+                transform: skew(-10deg) translateX(50px) rotate(405deg);
+            }
+        }
+
+        @keyframes rot2 {
+            100% {
+                transform: skew(-10deg) rotate(525deg);
+            }
+        }
+
+        @keyframes rot3 {
+            100% {
+                transform: skew(-10deg) translateX(20px) translateY(-50px) rotate(645deg);
+            }
+        }
+
+        @keyframes color {
+            33% {
+                background: #E7CBF3;
+            }
+            66% {
+                background: #C9F3E6;
+            }
+            0%,
+            100% {
+                background: #FFEDD3;
+            }
+        }
+    </style>
+    <my-app>
+            <main>
+                <div class="first"></div>
+                <div class="second"></div>
+                <div class="third"></div>
+            </main>
+   
     </my-app>
 </body>
 <script type="text/javascript" src="vendor.js" async></script>
 <script type="text/javascript" src="webcomponents-loader.js" async></script>
+
 </html>

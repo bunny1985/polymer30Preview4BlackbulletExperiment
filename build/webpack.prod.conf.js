@@ -49,7 +49,6 @@ module.exports = {
     // }),
     // copy custom static assets
     new CopyWebpackPlugin(filesToCopy),
-    // get around with stupid warning
     new webpack.IgnorePlugin(/vertx/),
   ]
 };

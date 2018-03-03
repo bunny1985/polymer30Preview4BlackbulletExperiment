@@ -4,6 +4,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CommonsChunkPlugin = require('webpack/lib/optimize/CommonsChunkPlugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
+loaders = require("./Loaders")
+filesToCopy = require("./Copy")
 
 module.exports = {
   entry: {
@@ -25,28 +27,7 @@ module.exports = {
     path: path.resolve(__dirname, '..', 'dist')
   },
   module: {
-    rules: [
-      {
-        test: /\.(html)$/,
-        use: {
-          loader: 'html-loader'
-        }
-      },
-      {
-        test: /\.css$/,
-        use: 'raw-loader'
-      },
-      {
-        test: /\.js$/,
-        use: 'babel-loader'
-      },
-      
-      {
-        test: /\.ts?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
-      }
-    ]
+    rules: loaders 
   },
   resolve: {
     modules: [path.resolve(__dirname, "src"), "node_modules"],
@@ -63,16 +44,7 @@ module.exports = {
     //  template: './index.html'
     //}),
     // copy custom static assets
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, '../static'),
-        to: 'static',
-        ignore: ['.*']
-      },
-      {
-        from: path.resolve(__dirname, '../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js')
-      }
-    ]),
+    new CopyWebpackPlugin(filesToCopy),
     new webpack.IgnorePlugin(/vertx/),
     new webpack.HotModuleReplacementPlugin(),
   ]
